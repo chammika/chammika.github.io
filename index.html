@@ -446,21 +446,22 @@
 
       <section id="profile">
         <h2>Profile</h2>
-        <p>Backend and distributed-systems engineer working in Rust, C/C++ and Python, with over a decade of experience building horizontally scalable, multi-tenant backend platforms and data-heavy services.</p>
-        <p>Currently building the core of a Kubernetes-based workflow platform in Rust: capacity-aware request routing, batching, and near-real-time cluster state. Designed the platform's automated data-retention (tenant deletion) system with distributed, per-hop service authentication.</p>
-        <p>Background also covers ML embedding and inference serving, gRPC API integrations, and fault-tolerant real-time systems. Rust open-source contributor (Ruff, anodized). Tokyo-based.</p>
+        <p>Backend and distributed-systems engineer with over a decade of experience building multi-tenant backend platforms and data-heavy services, working mainly in Rust, plus Go, C/C++ and Python.</p>
+        <p>At CADDi I build the Rust core of a Kubernetes-based workflow platform: capacity-aware routing, batching, and a near-real-time cluster-state service. I also built, in Go on Temporal, the platform's automated tenant data deletion system, with per-hop service authentication.</p>
+        <p>Earlier work covers ML embedding search and model serving, ad-platform API integrations (gRPC/REST), and fault-tolerant real-time hardware/software systems. Rust open-source contributor (Ruff, Anodized). Tokyo-based.</p>
       </section>
 
       <section id="skills">
         <h2>Technologies</h2>
         <div class="table-scroll">
           <table class="data-table">
-            <tr><th>Languages</th><td>Rust, C/C++, Python, Go</td></tr>
-            <tr><th>Distributed systems</th><td>Temporal (durable execution), gRPC/protobuf, Connect RPC, Redis, Pub/Sub, OpenTelemetry</td></tr>
+            <tr><th>Languages</th><td>Rust, Go, C/C++, Python</td></tr>
+            <tr><th>Rust ecosystem</th><td>Tokio, Axum, kube-rs, serde, tracing, SeaORM</td></tr>
+            <tr><th>Distributed systems</th><td>Temporal (durable execution), Temporal Nexus, gRPC/protobuf, Connect RPC, Redis, Pub/Sub, OpenTelemetry</td></tr>
             <tr><th>Cloud</th><td>GCP (GKE, GCS, Pub/Sub, BigQuery), AWS (Lambda, EC2, Redshift, S3, Elasticsearch)</td></tr>
             <tr><th>Containers &amp; IaC</th><td>Docker, Kubernetes, Helm, Kustomize, Terraform, Config Connector</td></tr>
             <tr><th>DevOps &amp; observability</th><td>ArgoCD, Argo Workflows, Datadog, Prometheus, GitHub Actions</td></tr>
-            <tr><th>Databases</th><td>PostgreSQL (AlloyDB), MySQL, MongoDB, Neo4j, Redis</td></tr>
+            <tr><th>Databases</th><td>PostgreSQL / AlloyDB (incl. schema migrations), Redis, MySQL, Elasticsearch, BigQuery, MongoDB, Neo4j</td></tr>
             <tr><th>ML &amp; AI</th><td>PyTorch, MXNet, TensorFlow/Keras, embeddings and similarity search, LLM-assisted engineering (Claude Code)</td></tr>
             <tr><th>Systems</th><td>Linux device drivers and embedded C/C++, assembly (x86, ARM7, V850E)</td></tr>
           </table>
@@ -484,13 +485,13 @@
       <section class="entry" id="job-caddi">
         <div class="entry-head"><h3>Senior Software Engineer (Rust)</h3><span class="when">Dec 2024 – present</span></div>
         <p class="org">CADDi Inc. · Platform Workflow Engine Team · Tokyo</p>
-        <p>About two years as a full-time Rust engineer on Nucleus, the multi-tenant workflow platform (Argo Workflows on GKE) that processes all customer drawings and CAD files. Second-largest contributor (850+ commits) to the platform's service repository.</p>
+        <p>About two years as a full-time Rust engineer on Nucleus, the multi-tenant workflow platform (Argo Workflows on GKE) that processes all customer drawings and CAD files. Second-largest contributor (850+ commits) to the platform's service repository. Also a developer on the company's durable-execution platform (Temporal, Go).</p>
         <ul>
           <li>Designed and built the cluster-state service (Rust, Tokio, kube-rs, Redis, Pub/Sub) that provides near-real-time capacity and workflow state for routing every workflow across clusters and lanes. <a href="#p-cluster">Project details</a></li>
           <li>Core developer of the aggregation service: a Tokio actor pipeline for file ingestion, batching and capacity-aware routing, with priority lanes, per-tenant concurrency limits and backpressure.</li>
-          <li>Technical lead for automated tenant data deletion: a Temporal-based orchestrator fanning out to 7 services owned by 6 teams, with scoped service-to-service authentication. Mitigates a data-retention risk rated "Very High" and avoids at least 720 person-days of manual toil over three years. <a href="#p-deletion">Project details</a></li>
-          <li>Migrated per-tenant storage provisioning from Terraform/GitHub Actions to Kubernetes Config Connector, adopting existing buckets in place with a canary and a rehearsed rollback.</li>
-          <li>Production on-call and incident triage using Datadog and OpenTelemetry. Wrote alerts and runbooks.</li>
+          <li>Built per-tenant configuration propagation: a watcher and reconciler that apply tenant settings to Kubernetes ConfigMaps over Redis Streams consumer groups.</li>
+          <li>Designed and built automated tenant data deletion in Go on Temporal: control plane and orchestrator fanning out to 7 services owned by 6 teams, with scoped service-to-service authentication. In production since June 2026. It mitigates a data-retention risk rated "Very High" by the Security Committee and avoids at least 720 person-days of manual toil over three years. <a href="#p-deletion">Project details</a></li>
+          <li>Migrated per-tenant storage for all tenants from Terraform runs in GitHub Actions to Kubernetes Config Connector in dev, staging and production. Buckets were adopted in place without downtime while live workflows kept running, with a canary, a config diff checker and a rehearsed rollback.</li>
         </ul>
       </section>
 
@@ -532,7 +533,7 @@
       <section class="entry" id="job-jst">
         <div class="entry-head"><h3>Research &amp; Development Engineer</h3><span class="when">Apr 2009 – Feb 2013</span></div>
         <p class="org">Japan Science and Technology (JST) Project</p>
-        <p>Design and development of a Network-on-Chip (NoC) based, fault-tolerant Electronic Control Unit (ECU) for real-time automotive control: hardware accelerators, FPGA prototyping with HILS integration, and C/C++ software and debugging tools for the multi-core platform.</p>
+        <p>Design and development of a Network-on-Chip (NoC) based, fault-tolerant Electronic Control Unit (ECU) for real-time automotive control: hardware accelerators, FPGA prototyping with HILS integration, and C/C++ software and debugging tools for the multi-core platform, including a real-time debugging tool that streams program variables from the cores over USB for live plotting.</p>
       </section>
 
       <section class="entry" id="job-avrotec">
@@ -550,8 +551,9 @@
         <p class="org">CADDi Inc. · Tokyo</p>
         <p>Real-time view of workflow execution across Kubernetes clusters, used to admit and route every workflow on the platform.</p>
         <ul>
-          <li>Hybrid design: a kube-rs watcher streams workflow events for low latency, and a consolidator polls every 250 ms to repair missed events. Consumers receive state changes over Pub/Sub.</li>
+          <li>Hybrid design: a kube-rs watcher streams workflow events for low latency, and a consolidator polls every 250 ms to repair missed events. Workflow-state change events are published to Pub/Sub and consumed by other teams.</li>
           <li>Per-cluster, per-lane capacity bands plus per-tenant concurrency limits, with an inflight cache (TTL + rollback) that closes the gap between submission and observation.</li>
+          <li>Failed placements report an explicit reason (concurrency limit reached, lane saturated, state unavailable).</li>
           <li>High availability through leader election, multiple replicas and zone anti-affinity. Rolled out dark before cutover, replacing the previous snapshot-based component.</li>
         </ul>
         <div class="tech"><span>Rust</span><span>Tokio</span><span>Axum</span><span>kube-rs</span><span>Redis</span><span>GCP Pub/Sub</span><span>PostgreSQL</span><span>Kubernetes</span><span>Argo Workflows</span><span>Datadog</span></div>
@@ -566,6 +568,7 @@
           <li>Distributed authentication: scoped machine-to-machine JWTs propagated across hops and validated by every worker. Tenant identity is taken only from token claims, never from request input.</li>
           <li>Idempotent at every layer (deterministic workflow IDs, conflict-tolerant calls) so recovery is a safe re-run. A shared SLO time budget across dependent services.</li>
           <li>OpenTelemetry tracing across all services, and failure-path tests including simulated control-plane outages.</li>
+          <li>Two-tier SLOs: customer-facing (deletion within 70 days) and per-service (≤2 days, ≥99% success).</li>
         </ul>
         <div class="tech"><span>Temporal Cloud (AWS)</span><span>Go</span><span>Kubernetes (GKE)</span><span>OpenTelemetry</span><span>Connect RPC/protobuf</span><span>Datadog</span></div>
       </section>
@@ -587,9 +590,10 @@
         <p class="org">Metaps Corp. · Tokyo · <a href="https://metaps-one.com/news/miel-release">release note</a></p>
         <p>Backend for miel, an AI-based fashion matching app built on visual similarity search.</p>
         <ul>
-          <li>Trained deep-metric-learning models that generate embeddings for similarity search, improving image retrieval accuracy (Recall@1) from 75% to 89%.</li>
-          <li>Served models in production at about 120 ms latency and 80 QPS on CPU, using batched async multi-model serving on Kubernetes.</li>
+          <li>Found that training sampling was the bottleneck and implemented a better sampling strategy for deep-metric-learning embeddings, improving Recall@1 from 75% to 89% (moving from Caffe to MXNet to PyTorch).</li>
+          <li>Replaced unstable Flask model serving with batched async multi-model serving on an on-prem Kubernetes cluster I set up and operated: about 120 ms latency and 80 QPS on CPU.</li>
           <li>Cut the indexing time for 2 million products from 3 hours to 15 minutes.</li>
+          <li>Built a curation tool so that newly trained models could be compared in production within 1–2 hours.</li>
         </ul>
         <div class="tech"><span>PyTorch/MXNet</span><span>Python (asyncio)</span><span>Kubernetes</span><span>Firebase/Firestore</span><span>S3</span></div>
       </section>
@@ -612,7 +616,7 @@
       <section class="card" id="o-ruff">
         <div class="entry-head"><h3>Ruff</h3><span class="when">2022 – 2024</span></div>
         <p class="org"><a href="https://github.com/astral-sh/ruff">github.com/astral-sh/ruff</a></p>
-        <p>Ruff is a fast Python linter written in Rust. I implemented 10 lint rules across 9 merged PRs: AST detection, autofixes and tests.</p>
+        <p>Ruff is a fast Python linter written in Rust. I implemented 10 lint rules across 9 merged PRs: AST detection, autofixes and tests. I built them so my team could replace its stack of separate Python linters with Ruff.</p>
         <div class="tech"><span>Rust</span></div>
       </section>
 
@@ -666,6 +670,8 @@
           <li>C. Mannakkara, D. Wang, V. Holimath, T. Yoneda, <em>A Case Study on Dependable Network-on-Chip Platform for Automotive Applications</em>, IEICE, CPSY 2011-3, pp. 11-16, 2011.</li>
           <li>C. Mannakkara, T. Yoneda, <em>Asynchronous Pipeline Controller Based on Early Acknowledgement Protocol</em>, IEICE Transactions on Information and Systems, vol. E93-D, no. 8, pp. 2145, 2010.</li>
           <li>C. Mannakkara, T. Yoneda, <em>Asynchronous Bundled Data Communication with Early Acknowledgement Protocol</em>, Proceedings on Applications of Concurrency to System Design (ACSD), pp. 118-127, 2008.</li>
+          <li>C. Mannakkara, T. Yoneda, <em>Comparison of Standard Cell based Nonlinear Asynchronous Pipelines</em>, IEICE Technical Report, VLSI, 2007.</li>
+          <li>C. Mannakkara, S. Signell, <em>Software implementation of DVB-RCT Modulator</em>, International Conference on Industrial and Information Systems, pp. 463-469, 2006.</li>
         </ul>
       </section>
 
